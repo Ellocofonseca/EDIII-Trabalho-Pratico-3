@@ -53,13 +53,37 @@ typedef struct
 // STRUCT DOS DADOS DO GRAFO EM FORMATO DE LISTA DE ADJACENCIA
 typedef struct
 {
-    /* data */
-} predador;
+    //informacoes do predador
+    int pos;
+    char *nome;
+    char *especie;
+    char *habitat;
+    char *dieta;
+    char *tipo;
+    int g_entrada, g_saida; // graus de entrada e saida
 
+    //informacoes da presa
+    char *presa_n;
+    char *presa_p;
+    int presa_pos;
+} vertice;
 
-
+typedef struct
+{
+    int nroV;          //nro de vertices do grafo
+    vertice *PREDADOR; //grafo eh composto de uma lista de vertices (predadores)
+} grafo;
 
 //--------FUNCOES-DO-PROGRAMA------------
+
+//FUNCIONALIDADES
+void func10();
+
+
+//FUNCOES QUE CRIAM O GRAFO E EXIBEM SEUS VERTICES
+grafo* cria_grafo();
+void exibe_vertice(grafo *GRAFO,int vertice);
+
 
 //FUNCOES PADRAO, REDIRECIONAMENTO, COMPARACAO, TECLADO
 void direcionaComando(int codigo);                              //FUNCAO DE SELECAO DE FUNCAO DE ACORDO COM O COMANDO
@@ -72,10 +96,7 @@ void exibe_registro(dados DADO);                                //FUNCAO QUE PRI
 //FUNCOES DE FREAD DE ARQUIVO BINARIO
 cabecalho le_cabecalho(FILE *arquivo);                                      //FUNCAO QUE LE A PORCAO INICIAL DO CABECALHO DE UM ARQUIVO BIN
 dados le_registro(FILE *arquivo);                                           //FUNCAO QUE LE UM DOS VARIOS DADOS
-//FUNCOES DE FWRITE EM ARQUIVO BINARIO
 
-//FUNCOES FORNECIDAS
-void scan_quote_string(char *str);
 
 
 #endif // __FUNCOES__
