@@ -8,6 +8,10 @@ grafo* cria_grafo()  //funcao retorna uma lista de predadores, que eh o grafo
     dados DADO;         // variavel de registro
     cabecalho CAB;      // variavel do cabecalho
 
+    //USADO POSTERIORMENTE PARA SEPARAR OS DADOS DOS VERTICES
+    char *lin;
+
+
     vertice* PREDADOR; // variavel da lista que sera criada
     grafo* GRAFO;       //grafo
 
@@ -22,6 +26,7 @@ grafo* cria_grafo()  //funcao retorna uma lista de predadores, que eh o grafo
     }
 
     CAB = le_cabecalho(arquivo);    //le o cabecalho
+    fseek(arquivo,1600,SEEK_SET);   //pula para os dados
 
     if(CAB.status=='0'){            //checa consistencia
         printf(ERRO_PADRAO);  
@@ -33,10 +38,29 @@ grafo* cria_grafo()  //funcao retorna uma lista de predadores, que eh o grafo
     GRAFO = calloc(1, sizeof(grafo));    //aloca o espaco do grafo
 
     //insere os dados de cada predador do arquivo de dados
+    for (int vertice = 0; vertice < CAB.proxRRN; vertice++)
+    { // loop que le os dados e insere no grafo
+        DADO = le_registro(arquivo);
+        if (DADO.removido == '0')
+        {
+            lin = strdup(DADO.variavel);
+            GRAFO->PREDADOR[vertice].nome = strsep(&lin, "#");
+            GRAFO->PREDADOR[vertice].especie = strsep(&lin, "#");
+            GRAFO->PREDADOR[vertice].habitat = strsep(&lin, "#");
+            GRAFO->PREDADOR[vertice].tipo = strsep(&lin, "#");
+            GRAFO->PREDADOR[vertice].dieta = strsep(&lin, "#");
+            GRAFO->PREDADOR[vertice].presa_n = strsep(&lin, "#");
 
-    //depois ordena
+            GRAFO->PREDADOR[vertice].pos = vertice;
+            // seila
+            GRAFO->PREDADOR[vertice].g_entrada;
+            GRAFO->PREDADOR[vertice].g_saida;
+            GRAFO->PREDADOR[vertice].presa_p;
+        }
+    }
+    //depois ordena?
 
-
+    fclose(arquivo);
     return GRAFO;
 }
 
@@ -66,7 +90,6 @@ void libera_grafo(grafo *g)
         free(g->PREDADOR[v].g_saida);//
         free(g->PREDADOR[v].presa_n);
         free(g->PREDADOR[v].presa_p);
-        free(g->PREDADOR[v].presa_pos);//
     }
     free(g);
 }

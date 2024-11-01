@@ -65,7 +65,6 @@ typedef struct
     //informacoes da presa
     char *presa_n;
     char *presa_p;
-    int presa_pos;
 } vertice;
 
 typedef struct
