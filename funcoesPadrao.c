@@ -1,5 +1,5 @@
 #include "./funcoesCriadas.h"
-#include "./funcoesArvB.h"
+
 
 // funcao que direciona o codigo para cada funcao de acordo com o numero selecionado
 
@@ -8,40 +8,24 @@ void direcionaComando(int codigo)
     switch (codigo)
     {
 
-    case 1:
+    case 10:
         csv_para_bin();
         break;
 
-    case 2:
+    case 11:
         exibe_campos();
         break;
 
-    case 3:
+    case 12:
         busca_determinada();
         break;
 
-    case 4:
+    case 13:
         remocao_logica();
         break;
 
-    case 5:
+    case 14:
         insere_registro();
-        break;
-
-    case 6:
-        compactador();
-        break;
-
-    case 7:
-        cria_arq_indices();
-        break;
-
-    case 8:
-        pesquisa();
-        break;
-
-    case 9:
-        insere_novo_dado();
         break;
 
     default:
