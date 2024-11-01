@@ -80,9 +80,10 @@ typedef struct
 void func10();
 
 
-//FUNCOES QUE CRIAM O GRAFO E EXIBEM SEUS VERTICES
+//FUNCOES QUE CRIAM O GRAFO E EXIBEM SEUS VERTICES, E LIBERAM ELE
 grafo* cria_grafo();
 void exibe_vertice(grafo *GRAFO,int vertice);
+void libera_grafo(grafo *g);
 
 
 //FUNCOES PADRAO, REDIRECIONAMENTO, COMPARACAO, TECLADO

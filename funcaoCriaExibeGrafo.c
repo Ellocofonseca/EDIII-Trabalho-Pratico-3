@@ -40,14 +40,33 @@ grafo* cria_grafo()  //funcao retorna uma lista de predadores, que eh o grafo
     return GRAFO;
 }
 
-void exibe_vertice(grafo *GRAFO,int vertice)
+void exibe_vertice(grafo *GRAFO,int ver)
 {
-    printf("%s, %s, %s, %s",GRAFO->PREDADOR[vertice].nome,GRAFO->PREDADOR[vertice].especie,
-    GRAFO->PREDADOR[vertice].habitat,GRAFO->PREDADOR[vertice].dieta);
+    printf("%s, %s, %s, %s",GRAFO->PREDADOR[ver].nome,GRAFO->PREDADOR[ver].especie,
+    GRAFO->PREDADOR[ver].habitat,GRAFO->PREDADOR[ver].dieta);
 
-    printf("%s, %d, %d, %d",GRAFO->PREDADOR[vertice].tipo,GRAFO->PREDADOR[vertice].g_entrada,
-    GRAFO->PREDADOR[vertice].g_saida,GRAFO->PREDADOR[vertice].g_entrada+GRAFO->PREDADOR[vertice].g_saida);
+    printf("%s, %d, %d, %d",GRAFO->PREDADOR[ver].tipo,GRAFO->PREDADOR[ver].g_entrada,
+    GRAFO->PREDADOR[ver].g_saida,GRAFO->PREDADOR[ver].g_entrada+GRAFO->PREDADOR[ver].g_saida);
 
-    printf("%s, %s\n",GRAFO->PREDADOR[vertice].presa_n,GRAFO->PREDADOR[vertice].presa_p);
+    printf("%s, %s\n",GRAFO->PREDADOR[ver].presa_n,GRAFO->PREDADOR[ver].presa_p);
 
+}
+
+void libera_grafo(grafo *g)
+{   
+    int v;
+    for(v=0; v<g->nroV; v++){   //loop que libera o grafo
+        free(g->PREDADOR[v].pos);//
+        free(g->PREDADOR[v].nome);
+        free(g->PREDADOR[v].especie);
+        free(g->PREDADOR[v].habitat);
+        free(g->PREDADOR[v].dieta);
+        free(g->PREDADOR[v].tipo);
+        free(g->PREDADOR[v].g_entrada);//
+        free(g->PREDADOR[v].g_saida);//
+        free(g->PREDADOR[v].presa_n);
+        free(g->PREDADOR[v].presa_p);
+        free(g->PREDADOR[v].presa_pos);//
+    }
+    free(g);
 }

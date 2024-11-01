@@ -10,6 +10,8 @@ void func10()
     if(g==NULL)
         return;
 
-    for(int vertice=0; vertice<g->nroV; vertice++)   //loop que exibe os vertices do grafo
-        exibe_vertice(g,vertice);
+    for(int ver=0; ver<g->nroV; ver++)   //loop que exibe os vertices do grafo
+        exibe_vertice(g,ver);
+
+    libera_grafo(g);    //quem sabe nem precise disso
 }
